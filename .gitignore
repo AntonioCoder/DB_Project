@@ -1,2 +1,6 @@
 # Folders
 out/
+src/DB_Test/bin
+src/DB_Test/obj
+src/Handler/bin
+src/Handler/obj
