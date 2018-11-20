@@ -1,0 +1,20 @@
+@startuml Pass to Auditory
+
+activate Reader
+ref over Reader : Read UUID
+Reader -> Handler : Send UUID
+destroy Reader
+activate Handler 
+ref over Handler : PAA: "Verify UUID"
+alt gruanted
+Handler -> Maglock : Open
+activate Maglock
+Maglock --> Handler : true
+destroy Maglock
+ref over Handler : GUI: Show c_message(\n"Please enter")\nLog: maglock opened\nwith UUID
+else denied
+ref over Handler : GUI: Show c_message(\n"Access denied")\nLog: try to open maglock\nwith UUID
+end
+destroy Handler
+
+@enduml

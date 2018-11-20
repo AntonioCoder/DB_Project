@@ -1,4 +1,0 @@
-/*
- * Copyright (c) Gemofort All rights reserved.
- * Consult your license regarding permissions and restrictions.
-V1.00:0001 */
