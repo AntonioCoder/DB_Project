@@ -10,9 +10,9 @@
 // Defines
 #ifdef _PLATFORM_WINDOWS 
 	#ifdef _BUILD_DLL
-		#define H_API __declspec(dllexport)
+		#define HANDLER_API __declspec(dllexport)
 	#else
-		#define H_API __declspec(dllimport)
+		#define HANDLER_API __declspec(dllimport)
 	#endif
 #else 
 	#error WINDOWS ONLY SUPPORT

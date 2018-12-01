@@ -1,3 +1,4 @@
+#include "WNDpch.h"
 #include "Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
@@ -11,7 +12,7 @@ void Log::Init()
 	s_CoreLogger = spdlog::stdout_color_mt("HANDLER");
 	spdlog::set_level(spdlog::level::trace);
 
-	s_ClientLogger = spdlog::stdout_color_mt("TEST");
+	s_ClientLogger = spdlog::stdout_color_mt("CLIENT");
 	spdlog::set_level(spdlog::level::trace);
 }
 _HANDLER_END

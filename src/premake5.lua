@@ -1,4 +1,4 @@
-workspace "DB_Test"
+workspace "DB_Project"
     architecture "x64"
 
     configurations {
@@ -22,8 +22,12 @@ project "Handler"
         "%{prj.name}/src/**.cpp"
     }
 
+    pchheader "WNDpch.h"
+    pchsource "WNDpch.cpp"
+
     includedirs {
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "."
     }
 
     filter "system:windows"
@@ -34,10 +38,6 @@ project "Handler"
         defines {
             "_PLATFORM_WINDOWS",
             "_BUILD_DLL"
-        }
-
-        postbuildcommands {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/DB_Test")
         }
 
     filter "configurations:Debug"
@@ -52,8 +52,8 @@ project "Handler"
         defines "H_DIST"
         optimize "On"
 
-project "DB_Test"
-        location "DB_Test"
+project "View"
+        location "View"
         kind "ConsoleApp"
         language "C++"
 
@@ -77,10 +77,10 @@ project "DB_Test"
     filter "system:windows"
         cppdialect "C++17"
         staticruntime "On"
-        systemversion "10.0.17763.0"
+        systemversion "latest"
 
         defines {
-            "_PLATFORM_WINDOWS",
+            "_PLATFORM_WINDOWS"
         }
 
     filter "configurations:Debug"

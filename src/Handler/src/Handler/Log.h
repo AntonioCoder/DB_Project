@@ -6,7 +6,7 @@
 #include "spdlog/spdlog.h"
 
 _HANDLER_START
-class H_API Log
+class HANDLER_API Log
 {
 public:
 	static void Init();
@@ -33,6 +33,3 @@ _HANDLER_END
 #define H_WARN(...)				_HANDLER Log::GetClientLogger()->warn(__VA_ARGS__)
 #define H_ERROR(...)			_HANDLER Log::GetClientLogger()->error(__VA_ARGS__)
 #define H_FATAL(...)			_HANDLER Log::GetClientLogger()->fatal(__VA_ARGS__)
-
-// Messages
-#define PrintInfo(...)			_HANDLER Log::GetClientLogger()->info(__VA_ARGS__)
