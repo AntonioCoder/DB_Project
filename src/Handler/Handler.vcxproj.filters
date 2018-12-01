@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{1F80880B-8B89-887C-1405-9F7C800D947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Application.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\EntryPoint.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Events.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\HANmacros.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Handler.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\KeyCodes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ViewBase.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\WNDpch.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Window.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ViewBase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WNDpch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

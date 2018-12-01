@@ -4,5 +4,4 @@ src/bin
 src/bin-int
 
 # Files
-*.sln
-*.vcxproj**
+*.**user
