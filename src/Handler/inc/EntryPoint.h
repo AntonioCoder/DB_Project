@@ -1,21 +1,22 @@
 #pragma once
-#include "macros.h"
+#include "HANmacros.h"
+#include "Application.h"
+#include "Log.h"
 
 #ifdef _PLATFORM_WINDOWS
 extern _HANDLER Application* _HANDLER CreateApplication();
 
 #ifndef _WNDGUI
-int __cdecl wmain(int argc, _In_reads_(argc) WCHAR **argv)
+int __cdecl wmain(int argc, wchar_t *argv[], wchar_t *envp[])
 {
-	_HANDLER Log::Init();
-	H_CORE_WARN("INITIALISE LOG\n\t\t[WNDGUI IS NOT DEFINED]\n");
-	H_CORE_TRACE("Starting in CONSOLE mode...");
+	_LOG Log::Init();
+	LOG_CORE_WARN("INITIALISE LOG\n\t\t[WNDGUI IS NOT DEFINED]\n");
+	LOG_CORE_TRACE("Starting in CONSOLE mode...");
 	auto app = _HANDLER CreateApplication();
 	app->Run();
 	delete app;
 }
 #else
-#include <Windows.h>
 #include <shlwapi.h>
 
 #include "ViewBase.h"

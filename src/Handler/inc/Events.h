@@ -1,6 +1,5 @@
 #pragma once
-#include "macros.h"
-#include "KeyCodes.h"
+#include "HANmacros.h"
 
 _HANDLER_START
 #ifdef _WNDGUI

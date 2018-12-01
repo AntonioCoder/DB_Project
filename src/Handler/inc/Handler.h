@@ -1,16 +1,16 @@
 #pragma once
 
 // ---Application leyer----------------------
-#include "Handler/Application.h"
-#include "Handler/Log.h"
-#include "Handler/Window.h"
-#include "Handler/ViewBase.h"
+#include "Application.h"
+#include "Window.h"
+#include "ViewBase.h"
 // ------------------------------------------
 
 // --- Events -------------------------------
-#include "Handler/Events.h"
+#include "Events.h"
 // ------------------------------------------
 
 // ---Entry Point----------------------------
-#include "Handler/EntryPoint.h"
+#include "EntryPoint.h"
+#include "HANmacros.h"
 // ------------------------------------------

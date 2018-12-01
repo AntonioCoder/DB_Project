@@ -1,6 +1,5 @@
 #pragma once
-
-#include "macros.h"
+#include "HANmacros.h"
 
 _HANDLER_START
 #ifndef _WNDGUI

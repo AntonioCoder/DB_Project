@@ -1,4 +1,4 @@
-workspace "DB_Project"
+workspace "DBProject"
     architecture "x64"
 
     configurations {
@@ -9,16 +9,64 @@ workspace "DB_Project"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+
+
+project "LogL"
+    location "LogL"
+    kind "SharedLib"
+    language "C++"
+
+    targetdir ("bin/" .. outputdir .. "/DBProject") 
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
+
+    files {
+        "%{prj.name}/inc/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
+
+    pchheader "LOGpch.h"
+    pchsource "LOGpch.cpp"
+
+    includedirs {
+        "%{prj.name}/vendor/spdlog/include",
+        "%{prj.name}/inc",
+        "."
+    }
+
+    filter "system:windows"
+        cppdialect "C++17"
+        staticruntime "On"
+        systemversion "latest"
+
+        defines {
+            "_PLATFORM_WINDOWS",
+            "_BUILD_DLL"
+        }
+
+    filter "configurations:Debug"
+        defines "_DEBUG"
+        symbols "On"
+
+    filter "configurations:Release"
+        defines "_RELEASE"
+        optimize "On"
+        
+    filter "configurations:Dist"
+        defines "_DIST"
+        optimize "On"
+
+
+
 project "Handler"
     location "Handler"
     kind "SharedLib"
     language "C++"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}") 
+    targetdir ("bin/" .. outputdir .. "/DBProject") 
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
 
     files {
-        "%{prj.name}/src/**.h",
+        "%{prj.name}/inc/**.h",
         "%{prj.name}/src/**.cpp"
     }
 
@@ -26,14 +74,15 @@ project "Handler"
     pchsource "WNDpch.cpp"
 
     includedirs {
-        "%{prj.name}/vendor/spdlog/include",
+        "%{prj.name}/inc",
+        "LogL/inc",
         "."
     }
 
     filter "system:windows"
         cppdialect "C++17"
         staticruntime "On"
-        systemversion "10.0.17763.0"
+        systemversion "latest"
 
         defines {
             "_PLATFORM_WINDOWS",
@@ -51,13 +100,61 @@ project "Handler"
     filter "configurations:Dist"
         defines "H_DIST"
         optimize "On"
+        
+
+
+project "SQLC"
+    location "SQLC"
+    kind "SharedLib"
+    language "C++"
+
+    targetdir ("bin/" .. outputdir .. "/DBProject") 
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
+
+    files {
+        "%{prj.name}/inc/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
+
+    pchheader "SQLpch.h"
+    pchsource "SQLpch.cpp"
+
+    includedirs {
+        "%{prj.name}/inc",
+        "LogL/inc",
+        "."
+    }
+
+    filter "system:windows"
+        cppdialect "C++17"
+        staticruntime "On"
+        systemversion "latest"
+
+        defines {
+            "_PLATFORM_WINDOWS",
+            "_BUILD_DLL"
+        }
+
+    filter "configurations:Debug"
+        defines "_DEBUG"
+        symbols "On"
+
+    filter "configurations:Release"
+        defines "_RELEASE"
+        optimize "On"
+        
+    filter "configurations:Dist"
+        defines "_DIST"
+        optimize "On"
+
+
 
 project "View"
         location "View"
         kind "ConsoleApp"
         language "C++"
 
-        targetdir ("bin/" .. outputdir .. "/%{prj.name}") 
+        targetdir ("bin/" .. outputdir .. "/DBProject") 
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
     
         files {
@@ -66,12 +163,16 @@ project "View"
         }
     
         includedirs {
-            "Handler/vendor/spdlog/include",
-            "Handler/src"
+            "LogL/vendor/spdlog/include/",
+            "Handler/inc",
+            "SQLC/inc",
+            "LogL/inc"
         }
 
         links {
-            "Handler"
+            "Handler",
+            "SQLC",
+            "LogL"
         }
 
     filter "system:windows"
@@ -84,13 +185,13 @@ project "View"
         }
 
     filter "configurations:Debug"
-        defines "H_DEBUG"
+        defines "_DEBUG"
         symbols "On"
 
     filter "configurations:Release"
-        defines "H_RELEASE"
+        defines "_RELEASE"
         optimize "On"
         
     filter "configurations:Dist"
-        defines "H_DIST"
+        defines "_DIST"
         optimize "On"

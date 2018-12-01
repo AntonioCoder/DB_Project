@@ -1,12 +1,16 @@
 //#define _WNDGUI
 #include <Handler.h>
+#include <Log.h>
+#include <SQLConnection.h>
 
 class View : public _HANDLER Application
 {
 public: 
 	View()
 	{
-		H_TRACE("View Initialised");
+	    LOG_TRACE("View Initialised");
+		LOG_TRACE("Establishong SQL connection");
+		_SQLC SQLConnection connection;
 	}
 	~View()
 	{

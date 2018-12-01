@@ -21,5 +21,17 @@ using namespace Microsoft::WRL;
 #include <map>
 #include <memory>
 
-// Helper functions
-// #include <Helpers.h>
+// SQL Headers
+#include <sql.h>
+#include <sqlext.h>
+#include <stdio.h>
+#include <conio.h>
+#include <tchar.h>
+#include <stdlib.h>
+#include <sal.h>
+
+// Macros
+#include "HANmacros.h"
+
+// KeyCodes
+#include "KeyCodes.h"
