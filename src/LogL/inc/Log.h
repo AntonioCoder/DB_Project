@@ -1,5 +1,6 @@
 #pragma once
 #include "LOGpch.h"
+#include "LOGmacros.h"
 
 _LOG_START
 class LOG_API Log
@@ -9,6 +10,8 @@ public:
 	
 	inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
 	inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_ClientLogger; }
+
+protected:
 
 private:
 	static std::shared_ptr<spdlog::logger> s_CoreLogger;

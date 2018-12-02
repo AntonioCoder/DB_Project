@@ -16,21 +16,20 @@ project "LogL"
     kind "SharedLib"
     language "C++"
 
-    targetdir ("bin/" .. outputdir .. "/DBProject") 
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}") 
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
+
+    pchheader "LOGpch.h"
+    pchsource "LOGpch.cpp"
 
     files {
         "%{prj.name}/inc/**.h",
         "%{prj.name}/src/**.cpp"
     }
 
-    pchheader "LOGpch.h"
-    pchsource "LOGpch.cpp"
-
     includedirs {
         "%{prj.name}/vendor/spdlog/include",
-        "%{prj.name}/inc",
-        "."
+        "%{prj.name}/inc"
     }
 
     filter "system:windows"
@@ -41,6 +40,10 @@ project "LogL"
         defines {
             "_PLATFORM_WINDOWS",
             "_BUILD_DLL"
+        }
+
+        postbuildcommands {
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/View")
         }
 
     filter "configurations:Debug"
@@ -62,21 +65,25 @@ project "Handler"
     kind "SharedLib"
     language "C++"
 
-    targetdir ("bin/" .. outputdir .. "/DBProject") 
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}") 
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
+    
+    pchheader "WNDpch.h"
+    pchsource "WNDpch.cpp"
 
     files {
         "%{prj.name}/inc/**.h",
         "%{prj.name}/src/**.cpp"
     }
 
-    pchheader "WNDpch.h"
-    pchsource "WNDpch.cpp"
 
     includedirs {
         "%{prj.name}/inc",
-        "LogL/inc",
-        "."
+        "LogL/inc"
+    }
+
+    links {
+        "LogL"
     }
 
     filter "system:windows"
@@ -89,16 +96,20 @@ project "Handler"
             "_BUILD_DLL"
         }
 
+        postbuildcommands {
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/View")
+        }
+
     filter "configurations:Debug"
-        defines "H_DEBUG"
+        defines "_DEBUG"
         symbols "On"
 
     filter "configurations:Release"
-        defines "H_RELEASE"
+        defines "_RELEASE"
         optimize "On"
         
     filter "configurations:Dist"
-        defines "H_DIST"
+        defines "_DIST"
         optimize "On"
         
 
@@ -108,21 +119,25 @@ project "SQLC"
     kind "SharedLib"
     language "C++"
 
-    targetdir ("bin/" .. outputdir .. "/DBProject") 
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}") 
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
+    
+    pchheader "SQLpch.h"
+    pchsource "SQLpch.cpp"
 
     files {
         "%{prj.name}/inc/**.h",
         "%{prj.name}/src/**.cpp"
     }
 
-    pchheader "SQLpch.h"
-    pchsource "SQLpch.cpp"
-
     includedirs {
+        "LogL/vendor/spdlog/include",
         "%{prj.name}/inc",
-        "LogL/inc",
-        "."
+        "LogL/inc"
+    }
+
+    links {
+        "LogL"
     }
 
     filter "system:windows"
@@ -133,6 +148,10 @@ project "SQLC"
         defines {
             "_PLATFORM_WINDOWS",
             "_BUILD_DLL"
+        }
+
+        postbuildcommands {
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/View")
         }
 
     filter "configurations:Debug"
@@ -154,7 +173,7 @@ project "View"
         kind "ConsoleApp"
         language "C++"
 
-        targetdir ("bin/" .. outputdir .. "/DBProject") 
+        targetdir ("bin/" .. outputdir .. "/%{prj.name}") 
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
     
         files {
@@ -163,12 +182,12 @@ project "View"
         }
     
         includedirs {
-            "LogL/vendor/spdlog/include/",
+            "LogL/vendor/spdlog/include",
             "Handler/inc",
             "SQLC/inc",
             "LogL/inc"
         }
-
+        
         links {
             "Handler",
             "SQLC",

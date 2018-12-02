@@ -14,7 +14,7 @@ public:
 	{
 	}
 
-	void Run();
+	virtual void Run();
 
 private:
 

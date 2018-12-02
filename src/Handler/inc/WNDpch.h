@@ -10,25 +10,12 @@
 #undef CreateWindow
 #endif
 
-// Windows Runtime Library. Needed for Microsoft::WRL::ComPtr<> template class.
-#include <wrl.h>
-using namespace Microsoft::WRL;
-
 // STL Headers
 #include <algorithm>
 #include <string>
 #include <cassert>
 #include <map>
 #include <memory>
-
-// SQL Headers
-#include <sql.h>
-#include <sqlext.h>
-#include <stdio.h>
-#include <conio.h>
-#include <tchar.h>
-#include <stdlib.h>
-#include <sal.h>
 
 // Macros
 #include "HANmacros.h"

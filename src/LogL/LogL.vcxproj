@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F2502722-086E-4BCB-8950-142AC0551620}</ProjectGuid>
+    <ProjectGuid>{13A2887C-FFD8-890D-A8C5-6F1094DB050F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>LogL</RootNamespace>
@@ -55,21 +55,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\DBProject\</OutDir>
+    <OutDir>..\bin\Debug-windows-x86_64\LogL\</OutDir>
     <IntDir>..\bin-int\Debug-windows-x86_64\LogL\</IntDir>
     <TargetName>LogL</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\DBProject\</OutDir>
+    <OutDir>..\bin\Release-windows-x86_64\LogL\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\LogL\</IntDir>
     <TargetName>LogL</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Dist-windows-x86_64\DBProject\</OutDir>
+    <OutDir>..\bin\Dist-windows-x86_64\LogL\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\LogL\</IntDir>
     <TargetName>LogL</TargetName>
     <TargetExt>.dll</TargetExt>
@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>LOGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_PLATFORM_WINDOWS;_BUILD_DLL;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;inc;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -89,8 +89,11 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\DBProject\LogL.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Debug-windows-x86_64\LogL\LogL.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\LogL\LogL.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\LogL\LogL.dll ..\bin\Debug-windows-x86_64\View &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\LogL\LogL.dll ..\bin\Debug-windows-x86_64\View &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -98,7 +101,7 @@
       <PrecompiledHeaderFile>LOGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_PLATFORM_WINDOWS;_BUILD_DLL;_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;inc;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -111,8 +114,11 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Release-windows-x86_64\DBProject\LogL.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Release-windows-x86_64\LogL\LogL.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\LogL\LogL.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\LogL\LogL.dll ..\bin\Release-windows-x86_64\View &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\LogL\LogL.dll ..\bin\Release-windows-x86_64\View &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
@@ -120,7 +126,7 @@
       <PrecompiledHeaderFile>LOGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_PLATFORM_WINDOWS;_BUILD_DLL;_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;inc;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -133,8 +139,11 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\DBProject\LogL.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Dist-windows-x86_64\LogL\LogL.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\LogL\LogL.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\LogL\LogL.dll ..\bin\Dist-windows-x86_64\View &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\LogL\LogL.dll ..\bin\Dist-windows-x86_64\View &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="inc\LOGmacros.h" />

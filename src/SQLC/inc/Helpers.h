@@ -24,6 +24,6 @@ inline void ThrowIfFailed(HRESULT hr)
                                 if (rc == SQL_ERROR) \
                                 { \
                                     fwprintf(stderr, L"Error in " L#x L"\n"); \
-                                    goto Exit;  \
+									goto Exit;\
                                 }  \
                             }

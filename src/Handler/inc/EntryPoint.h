@@ -10,8 +10,9 @@ extern _HANDLER Application* _HANDLER CreateApplication();
 int __cdecl wmain(int argc, wchar_t *argv[], wchar_t *envp[])
 {
 	_LOG Log::Init();
-	LOG_CORE_WARN("INITIALISE LOG\n\t\t[WNDGUI IS NOT DEFINED]\n");
+	LOG_CORE_WARN("INITIALISED LOG\n\t\t[WNDGUI IS NOT DEFINED]\n");
 	LOG_CORE_TRACE("Starting in CONSOLE mode...");
+
 	auto app = _HANDLER CreateApplication();
 	app->Run();
 	delete app;
@@ -34,7 +35,7 @@ int APIENTRY wWinMain(_In_	   HINSTANCE  hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
 	_HANDLER Log::Init();
-	H_CORE_WARN("INITIALISE LOG:\n\t\t[WNDGUI IS DEFINED]\n");
+	H_CORE_WARN("INITIALISED LOG:\n\t\t[WNDGUI IS DEFINED]\n");
 	H_CORE_TRACE("Building Window...");
 
 	

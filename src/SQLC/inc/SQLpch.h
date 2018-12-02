@@ -14,6 +14,10 @@
 #include <stdlib.h>
 #include <sal.h>
 #include <exception>
+#include <memory>
+
+// Logging
+//#include <Log.h>
 
 // Helpers Functions
 #include "Helpers.h"
