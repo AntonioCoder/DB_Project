@@ -20,7 +20,7 @@ project "LogL"
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
 
     pchheader "LOGpch.h"
-    pchsource "src/LogL/src/LOGpch.cpp"
+    pchsource "LogL/src/LOGpch.cpp"
 
     files {
         "%{prj.name}/inc/**.h",
@@ -69,7 +69,7 @@ project "Handler"
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
     
     pchheader "WNDpch.h"
-    pchsource "src/Handler/src/WNDpch.cpp"
+    pchsource "Handler/src/WNDpch.cpp"
 
     files {
         "%{prj.name}/inc/**.h",
@@ -123,7 +123,7 @@ project "SQLC"
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}") 
     
     pchheader "SQLpch.h"
-    pchsource "src/SQLC/src/SQLpch.cpp"
+    pchsource "SQLC/src/SQLpch.cpp"
 
     files {
         "%{prj.name}/inc/**.h",
