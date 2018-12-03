@@ -12,7 +12,7 @@ activate Handler #aaff00
 
 ref over Sender, Console: Base::GetData()
 Console -> Handler: Send data
-ref over Handler : PAA::Validate();
+ref over Handler : Base::Validate();
 alt data is valide:
     Handler --> Console: Return success\nsignal
     destroy Handler
